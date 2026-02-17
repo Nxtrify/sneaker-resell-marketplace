@@ -31,3 +31,11 @@ endif;
 ?>
 
 <p><a href="add_sneaker.php">Sneaker toevoegen</a></p>
+
+<?php
+if($s['status'] == 'active'){
+    $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
+    $stmt2->execute([$s['id']]);
+    $highest_bid = $stmt2->fetch();
+
+
