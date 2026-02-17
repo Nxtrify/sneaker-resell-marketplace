@@ -51,4 +51,9 @@ if($highest_bid){
 } else {
     echo "Nog geen bod.<br>";
 }
+
+        echo "</div>";
+
+    endforeach;
+}
 ?>
