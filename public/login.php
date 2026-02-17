@@ -33,8 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-<form method="POST">
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Wachtwoord" required><br>
-    <button type="submit">Login</button>
-</form>
+<link rel="stylesheet" href="../Assets/style.css">
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Login</h2>
+
+        <?php if (isset($error)) echo "<p style='color:red; text-align:center;'>$error</p>"; ?>
+
+        <form method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Wachtwoord" required>
+            <button type="submit">Inloggen</button>
+        </form>
+
+        <p style="text-align:center; margin-top:15px;">
+            Geen account? <a href="register.php">Registreren</a>
+        </p>
+    </div>
+</div>
