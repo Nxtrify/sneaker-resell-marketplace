@@ -32,7 +32,8 @@ if(empty($sneakers)){
 } else {
     foreach($sneakers as $s):
 
-        echo "<div style='border:1px solid #ccc; padding:10px; margin-bottom:15px;'>
+        echo echo "<div class='card'>
+
             <img src='{$s['image_url']}' width='150'><br>
             Merk: {$s['brand']}<br>
             Maat: {$s['size']}<br>
