@@ -12,3 +12,22 @@ requireLogin();
 $stmt = $pdo->prepare("SELECT * FROM sneakers WHERE user_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $sneakers = $stmt->fetchAll();
+
+if ($sneakers):
+    echo "<div style='display:grid; grid-template-columns:repeat(3,1fr); gap:20px;'>";
+    foreach($sneakers as $s):
+        echo "<div style='border:1px solid #ccc; padding:10px;'>
+            <img src='{$s['image_url']}' width='150'><br>
+            Merk: {$s['brand']}<br>
+            Maat: {$s['size']}<br>
+            Conditie: {$s['condition']}<br>
+            Status: {$s['status']}
+        </div>";
+    endforeach;
+    echo "</div>";
+else:
+    echo "<p>Geen sneakers toegevoegd.</p>";
+endif;
+?>
+
+<p><a href="add_sneaker.php">Sneaker toevoegen</a></p>
