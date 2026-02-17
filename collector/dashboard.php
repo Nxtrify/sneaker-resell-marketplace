@@ -4,7 +4,7 @@ require_once "../includes/auth.php";
 requireLogin();
 ?>
 
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../Assets/style.css">
 
 <div class="navbar">
     <a href="dashboard.php">Dashboard</a>
