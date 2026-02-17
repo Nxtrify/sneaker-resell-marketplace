@@ -38,4 +38,17 @@ if($s['status'] == 'active'){
     $stmt2->execute([$s['id']]);
     $highest_bid = $stmt2->fetch();
 
+        if($highest_bid){
+        echo "Hoogste bod: €" . $highest_bid['amount'] . "<br>";
+        echo "<form method='POST' action='accept_bid.php'>
+                <input type='hidden' name='sneaker_id' value='{$s['id']}'>
+                <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
+                <button type='submit'>Accepteer hoogste bod</button>
+              </form>";
+    } else {
+        echo "Nog geen bod.<br>";
+    }
+}
+?>
+
 
