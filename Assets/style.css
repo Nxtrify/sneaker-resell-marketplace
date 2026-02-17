@@ -40,3 +40,29 @@ body {
 .card img {
     border-radius: 8px;
 }
+
+
+button {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0097a7;
+}
+
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.active { background-color: #4CAF50; color: white; }
+.verification { background-color: #ff9800; color: white; }
+.sold { background-color: #f44336; color: white; }
