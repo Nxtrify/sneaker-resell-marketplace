@@ -32,3 +32,19 @@ $sneakers = $stmt->fetchAll();
         <th>Acties</th>
     </tr>
     <?php foreach($sneakers as $s): ?>
+         <tr>
+        <td><?php echo $s['id']; ?></td>
+        <td><?php echo $s['brand']; ?></td>
+        <td><?php echo $s['size']; ?></td>
+        <td><?php echo $s['condition']; ?></td>
+        <td><?php echo $s['seller_email']; ?></td>
+        <td>
+            <a href="verify_sneaker.php?id=<?php echo $s['id']; ?>&decision=approved">Goedkeuren</a> | 
+            <a href="verify_sneaker.php?id=<?php echo $s['id']; ?>&decision=rejected">Afkeuren</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<?php else: ?>
+<p>Geen sneakers in verificatie.</p>
+<?php endif; ?>
