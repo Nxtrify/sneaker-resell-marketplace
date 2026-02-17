@@ -11,6 +11,17 @@ $stmt->execute([$id]);
 $sneaker = $stmt->fetch();
 if (!$sneaker) die("Sneaker niet gevonden.");
 
+
+if ($sneaker['user_id'] == $_SESSION['user_id']) {
+    die("Je kan niet bieden op je eigen sneaker.");
+}
+
+
+if ($sneaker['status'] !== 'active') {
+    die("Je kan niet bieden op deze sneaker.");
+}
+
+
 $error = "";
 $success = "";
 
