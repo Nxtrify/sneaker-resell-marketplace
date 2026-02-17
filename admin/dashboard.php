@@ -1,11 +1,9 @@
-<p><a href="../public/logout.php">Uitloggen</a></p>
-
 <?php
 require_once "../includes/auth.php";
 requireLogin();
 requireAdmin();
 ?>
-
+<p><a href="../public/logout.php">Uitloggen</a></p>
 <h2>Admin Dashboard</h2>
 <p>Welkom Admin</p>
 
