@@ -41,3 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <div>
         <h3>Hoogste bod: <?php echo $sneaker['highest_bid'] ? "€".$sneaker['highest_bid'] : "Nog geen bod"; ?></h3>
+
+         <?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
+        <?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
+
+        <form method="POST">
+            Bod plaatsen (€): <input type="number" step="0.01" name="amount" required><br>
+            <button type="submit">Bied</button>
+        </form>
+    </div>
+</div>
+
+<p><a href="marketplace.php">Terug naar Marktplaats</a></p>
