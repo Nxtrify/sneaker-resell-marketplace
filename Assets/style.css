@@ -83,3 +83,22 @@ button:hover {
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
 
+.auth-card h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.auth-card button {
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+}
+
