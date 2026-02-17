@@ -9,7 +9,6 @@ requireLogin();
 <a href="../public/marketplace.php">Marktplaats</a> |
 <a href="add_sneaker.php">Sneaker toevoegen</a> |
 <a href="../public/logout.php">Uitloggen</a>
-<a href="add_sneaker.php">Sneaker toevoegen</a>
 </p>
 
 <h2>Collector Dashboard</h2>
