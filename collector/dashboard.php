@@ -14,6 +14,7 @@ requireLogin();
 </div>
 
 <div class="container">
+</div> 
 
 
 <h2>Collector Dashboard</h2>
