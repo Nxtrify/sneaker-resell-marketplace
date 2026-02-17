@@ -4,6 +4,12 @@ require_once "../includes/auth.php";
 requireLogin();
 ?>
 
+<p>
+<a href="dashboard.php">Dashboard</a> |
+<a href="../public/marketplace.php">Marktplaats</a> |
+<a href="add_sneaker.php">Sneaker toevoegen</a> |
+<a href="../public/logout.php">Uitloggen</a>
+</p>
 <p><a href="../public/logout.php">Uitloggen</a></p>
 <h2>Collector Dashboard</h2>
 <p>Welkom gebruiker ID: <?php echo $_SESSION['user_id']; ?></p>
