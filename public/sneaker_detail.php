@@ -14,4 +14,18 @@ if (!$sneaker) die("Sneaker niet gevonden.");
 $error = "";
 $success = "";
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $amount = floatval($_POST['amount']);
+    $highest = $sneaker['highest_bid'] ?? 0;
+
+    if ($amount <= $highest) {
+        $error = "Bod moet hoger zijn dan huidige hoogste bod (€$highest).";
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO bids (sneaker_id, user_id, amount) VALUES (?, ?, ?)");
+        $stmt->execute([$sneaker['id'], $_SESSION['user_id'], $amount]);
+        $success = "Bod geplaatst!";
+        $sneaker['highest_bid'] = $amount;
+    }
+}
+?>
 
