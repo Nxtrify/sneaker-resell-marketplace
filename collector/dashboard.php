@@ -1,10 +1,9 @@
-<p><a href="../public/logout.php">Uitloggen</a></p>
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
 requireLogin();
 ?>
-
+<p><a href="../public/logout.php">Uitloggen</a></p>
 <h2>Collector Dashboard</h2>
 <p>Welkom gebruiker ID: <?php echo $_SESSION['user_id']; ?></p>
 
