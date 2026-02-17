@@ -1,5 +1,5 @@
 <?php
-require_once "config/database.php"; // Zorg dat $pdo beschikbaar is
+require_once "config/database.php"; 
 
 $adminEmail = "admin@test.nl";
 $adminPassword = password_hash("admin123", PASSWORD_BCRYPT);
