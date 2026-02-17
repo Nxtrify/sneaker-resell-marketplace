@@ -21,7 +21,14 @@ $stmt = $pdo->prepare("SELECT * FROM sneakers WHERE user_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $sneakers = $stmt->fetchAll();
 
-foreach($sneakers as $s):
+if(empty($sneakers)){
+    echo "<p>Geen sneakers toegevoegd.</p>";
+} else {
+    foreach($sneakers as $s):
+        ...
+    endforeach;
+}
+
     echo "<div style='border:1px solid #ccc; padding:10px;'>
         <img src='{$s['image_url']}' width='150'><br>
         Merk: {$s['brand']}<br>
