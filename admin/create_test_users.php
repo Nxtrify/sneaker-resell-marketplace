@@ -10,3 +10,13 @@ $collectorEmail = "collector@test.nl";
 $collectorPassword = password_hash("collector123", PASSWORD_BCRYPT);
 $collectorRole = "collector";
 $collectorBlocked = 0;
+
+
+$stmt = $pdo->prepare("INSERT INTO users (email, password, role, blocked) VALUES (?, ?, ?, ?)");
+$stmt->execute([$adminEmail, $adminPassword, $adminRole, $adminBlocked]);
+
+
+$stmt = $pdo->prepare("INSERT INTO users (email, password, role, blocked) VALUES (?, ?, ?, ?)");
+$stmt->execute([$collectorEmail, $collectorPassword, $collectorRole, $collectorBlocked]);
+
+echo "Testaccounts aangemaakt!";
