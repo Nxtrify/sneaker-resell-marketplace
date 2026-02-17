@@ -10,3 +10,8 @@ $stmt = $pdo->prepare("SELECT s.*, (SELECT MAX(amount) FROM bids WHERE sneaker_i
 $stmt->execute([$id]);
 $sneaker = $stmt->fetch();
 if (!$sneaker) die("Sneaker niet gevonden.");
+
+$error = "";
+$success = "";
+
+
