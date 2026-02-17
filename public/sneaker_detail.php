@@ -29,3 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<h2>Sneaker Detail</h2>
+
+<div style="display:flex; gap:20px;">
+    <div>
+        <img src="<?php echo $sneaker['image_url']; ?>" width="200"><br>
+        Merk: <?php echo $sneaker['brand']; ?><br>
+        Maat: <?php echo $sneaker['size']; ?><br>
+        Conditie: <?php echo $sneaker['condition']; ?><br>
+        Status: <?php echo $sneaker['status']; ?><br>
+    </div>
+    <div>
+        <h3>Hoogste bod: <?php echo $sneaker['highest_bid'] ? "€".$sneaker['highest_bid'] : "Nog geen bod"; ?></h3>
