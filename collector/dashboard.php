@@ -14,8 +14,6 @@ requireLogin();
 </div>
 
 <div class="container">
-</div> 
-
 
 <h2>Collector Dashboard</h2>
 <p>Welkom gebruiker ID: <?php echo $_SESSION['user_id']; ?></p>
@@ -32,7 +30,7 @@ if(empty($sneakers)){
 } else {
     foreach($sneakers as $s):
 
-        echo echo "<div class='card'>
+        echo "<div class='card'>
 
             <img src='{$s['image_url']}' width='150'><br>
             Merk: {$s['brand']}<br>
