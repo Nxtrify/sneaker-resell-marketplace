@@ -1,5 +1,6 @@
-<?php
 <p><a href="../public/logout.php">Uitloggen</a></p>
+
+<?php
 require_once "../includes/auth.php";
 requireLogin();
 requireAdmin();
