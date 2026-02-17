@@ -18,3 +18,17 @@ $stmt = $pdo->query("SELECT s.*, u.email as seller_email FROM sneakers s
                      WHERE s.status='verification'");
 $sneakers = $stmt->fetchAll();
 ?>
+
+<h2>Admin Dashboard - Verificaties</h2>
+
+<?php if ($sneakers): ?>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Merk</th>
+        <th>Maat</th>
+        <th>Conditie</th>
+        <th>Verkoper</th>
+        <th>Acties</th>
+    </tr>
+    <?php foreach($sneakers as $s): ?>
