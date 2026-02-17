@@ -33,24 +33,21 @@ if(empty($sneakers)){
             Conditie: {$s['condition']}<br>
             Status: {$s['status']}<br>";
 
-        if($s['status'] == 'active'){
-            $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
-            $stmt2->execute([$s['id']]);
-            $highest_bid = $stmt2->fetch();
+      $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
+$stmt2->execute([$s['id']]);
+$highest_bid = $stmt2->fetch();
 
-            if($highest_bid){
-                echo "Hoogste bod: €" . $highest_bid['amount'] . "<br>";
-                echo "<form method='POST' action='accept_bid.php'>
-                        <input type='hidden' name='sneaker_id' value='{$s['id']}'>
-                        <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
-                        <button type='submit'>Accepteer hoogste bod</button>
-                      </form>";
-            } else {
-                echo "Nog geen bod.<br>";
-            }
-        }
+if($highest_bid){
+    echo "Hoogste bod: €" . $highest_bid['amount'] . "<br>";
 
-        echo "</div>";
-
-    endforeach;
+ 
+    if($s['status'] == 'active'){
+        echo "<form method='POST' action='accept_bid.php'>
+                <input type='hidden' name='sneaker_id' value='{$s['id']}'>
+                <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
+                <button type='submit'>Accepteer hoogste bod</button>
+              </form>";
+    }
+} else {
+    echo "Nog geen bod.<br>";
 }
