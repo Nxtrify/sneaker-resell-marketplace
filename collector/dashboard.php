@@ -4,6 +4,8 @@ require_once "../includes/auth.php";
 requireLogin();
 ?>
 
+<link rel="stylesheet" href="../assets/css/style.css">
+
 <p>
 <a href="dashboard.php">Dashboard</a> |
 <a href="../public/marketplace.php">Marktplaats</a> |
