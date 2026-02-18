@@ -19,10 +19,14 @@ requireLogin();
     </div>
 </div>
 
+<div class="container">
 
-<h2>Collector Dashboard</h2>
+    <h2 style="margin-bottom:5px;">Mijn Dashboard</h2>
+    <p style="color:#777; margin-bottom:30px;">
+        Beheer hier jouw sneakers en biedingen.
+    </p>
 
-<h3>Mijn Sneakers (My Closet)</h3>
+    <h3>Mijn Sneakers</h3>
 
 <?php
 $stmt = $pdo->prepare("SELECT * FROM sneakers WHERE user_id = ?");
@@ -33,41 +37,49 @@ if(empty($sneakers)){
     echo "<p>Geen sneakers toegevoegd.</p>";
 } else {
 
-echo "<div class='grid'>";
+    echo "<div class='grid'>";
 
-    foreach($sneakers as $s):
+    foreach($sneakers as $s){
 
-        echo "<div class='card'>
+        echo "<div class='card'>";
 
-            <img src='{$s['image_url']}' width='150'><br>
-            Merk: {$s['brand']}<br>
-            Maat: {$s['size']}<br>
-            Conditie: {$s['condition']}<br>
-            Status: {$s['status']}<br>";
+        echo "<img src='{$s['image_url']}' 
+                    style='width:100%; border-radius:10px; margin-bottom:10px;'>";
 
-      $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
-$stmt2->execute([$s['id']]);
-$highest_bid = $stmt2->fetch();
+        echo "<strong>{$s['brand']}</strong><br>";
+        echo "Maat: {$s['size']}<br>";
+        echo "Conditie: {$s['condition']}<br>";
 
-if($highest_bid){
-    echo "Hoogste bod: €" . $highest_bid['amount'] . "<br>";
+        echo "Status: 
+              <span class='badge {$s['status']}'>
+                  {$s['status']}
+              </span><br><br>";
 
- 
-    if($s['status'] == 'active'){
-        echo "<form method='POST' action='accept_bid.php'>
-                <input type='hidden' name='sneaker_id' value='{$s['id']}'>
-                <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
-                <button type='submit'>Accepteer hoogste bod</button>
-              </form>";
-    }
-} else {
-    echo "Nog geen bod.<br>";
-}
+        // Hoogste bod ophalen
+        $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
+        $stmt2->execute([$s['id']]);
+        $highest_bid = $stmt2->fetch();
+
+        if($highest_bid){
+            echo "<strong>Hoogste bod:</strong> €" . $highest_bid['amount'] . "<br><br>";
+
+            if($s['status'] == 'active'){
+                echo "<form method='POST' action='accept_bid.php'>
+                        <input type='hidden' name='sneaker_id' value='{$s['id']}'>
+                        <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
+                        <button type='submit'>Accepteer hoogste bod</button>
+                      </form>";
+            }
+
+        } else {
+            echo "Nog geen bod.<br>";
+        }
 
         echo "</div>";
+    }
 
-    endforeach;
-
-    echo "</div>"; 
+    echo "</div>";
 }
 ?>
+
+</div>
