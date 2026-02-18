@@ -137,6 +137,7 @@ button:hover {
     background-color: #0097a7;
 }
 
+/* NAVBAR */
 .navbar {
     background-color: #111;
     padding: 15px 40px;
@@ -152,6 +153,10 @@ button:hover {
     font-weight: 600;
 }
 
+.nav-left a:hover {
+    color: #00bcd4;
+}
+
 .nav-right {
     color: white;
     font-size: 14px;
@@ -161,3 +166,37 @@ button:hover {
     margin-right: 15px;
     opacity: 0.8;
 }
+
+
+.container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.active { background-color: #4CAF50; color: white; }
+.verification { background-color: #ff9800; color: white; }
+.sold { background-color: #f44336; color: white; }
+
