@@ -60,26 +60,30 @@ if(empty($sneakers)){
         $stmt2->execute([$s['id']]);
         $highest_bid = $stmt2->fetch();
 
-        if($highest_bid){
-            echo "<strong>Hoogste bod:</strong> €" . $highest_bid['amount'] . "<br><br>";
+   if($highest_bid){
+    echo "<strong>Hoogste bod:</strong> €" . $highest_bid['amount'] . "<br><br>";
 
-            if($s['status'] == 'active'){
-                echo "<form method='POST' action='accept_bid.php'>
-                        <input type='hidden' name='sneaker_id' value='{$s['id']}'>
-                        <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
-                        <button type='submit'>Accepteer hoogste bod</button>
-                      </form>";
-            }
-
-        } else {
-            echo "Nog geen bod.<br>";
-        }
-
-        echo "</div>";
+    if($s['status'] == 'active'){
+        echo "<form method='POST' action='accept_bid.php'>
+                <input type='hidden' name='sneaker_id' value='{$s['id']}'>
+                <input type='hidden' name='bid_id' value='{$highest_bid['id']}'>
+                <button type='submit'>Accepteer hoogste bod</button>
+              </form>";
     }
 
-    echo "</div>";
+} else {
+    echo "Nog geen bod.<br><br>";
 }
-?>
 
-</div>
+
+if($s['status'] == 'active'){
+    echo "<form method='POST' action='delete_sneaker.php'
+            onsubmit=\"return confirm('Weet je zeker dat je deze sneaker wil verwijderen?');\">
+            <input type='hidden' name='sneaker_id' value='{$s['id']}'>
+            <button type='submit' style='background:#f44336; margin-top:10px;'>
+                Verwijderen
+            </button>
+          </form>";
+}
+
+?>
