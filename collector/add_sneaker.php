@@ -21,9 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <h2>Voeg Sneaker Toe</h2>
 
-<?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-<?php if ($success) echo "<p style='color:green;'>$success</p>"; ?>
-
 <div class="navbar">
     <div class="nav-left">
         <a href="dashboard.php">Dashboard</a>
