@@ -32,6 +32,9 @@ $sneakers = $stmt->fetchAll();
 if(empty($sneakers)){
     echo "<p>Geen sneakers toegevoegd.</p>";
 } else {
+
+echo "<div class='grid'>";
+
     foreach($sneakers as $s):
 
         echo "<div class='card'>
@@ -64,5 +67,7 @@ if($highest_bid){
         echo "</div>";
 
     endforeach;
+
+    echo "</div>"; 
 }
 ?>
