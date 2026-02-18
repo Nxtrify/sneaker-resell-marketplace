@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["role"] = $user["role"];
+            $_SESSION["email"] = $user["email"];
             if ($user["role"] === "admin") {
                 header("Location: ../admin/dashboard.php");
             } else {

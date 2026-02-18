@@ -7,13 +7,17 @@ requireLogin();
 <link rel="stylesheet" href="../Assets/style.css">
 
 <div class="navbar">
-    <a href="dashboard.php">Dashboard</a>
-    <a href="../public/marketplace.php">Marktplaats</a>
-    <a href="add_sneaker.php">Sneaker toevoegen</a>
-    <a href="../public/logout.php">Uitloggen</a>
-</div>
+    <div class="nav-left">
+        <a href="dashboard.php">Dashboard</a>
+        <a href="../public/marketplace.php">Marktplaats</a>
+        <a href="add_sneaker.php">Sneaker toevoegen</a>
+    </div>
 
-<div class="container">
+    <div class="nav-right">
+        <span><?php echo $_SESSION['email']; ?></span>
+        <a href="../public/logout.php" style="color:white;">Uitloggen</a>
+    </div>
+</div>
 
 <h2>Collector Dashboard</h2>
 <p>Welkom gebruiker ID: <?php echo $_SESSION['user_id']; ?></p>
