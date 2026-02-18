@@ -19,6 +19,7 @@ requireLogin();
     </div>
 </div>
 
+
 <h2>Collector Dashboard</h2>
 
 <h3>Mijn Sneakers (My Closet)</h3>
