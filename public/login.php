@@ -29,21 +29,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<h2>Login</h2>
-
-<?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-
 <link rel="stylesheet" href="../Assets/style.css">
 
 <div class="auth-container">
+
+    <div class="auth-title">SneakerResell</div>
+    <div class="auth-subtitle">Premium Sneaker Marketplace</div>
+
     <div class="auth-card">
         <h2>Login</h2>
 
         <?php if (isset($error)) echo "<p style='color:red; text-align:center;'>$error</p>"; ?>
 
         <form method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Wachtwoord" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Inloggen</button>
         </form>
 
@@ -51,4 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             Geen account? <a href="register.php">Registreren</a>
         </p>
     </div>
+
 </div>
+
