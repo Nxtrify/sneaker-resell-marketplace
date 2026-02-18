@@ -20,7 +20,6 @@ requireLogin();
 </div>
 
 <h2>Collector Dashboard</h2>
-<p>Welkom gebruiker ID: <?php echo $_SESSION['user_id']; ?></p>
 
 <h3>Mijn Sneakers (My Closet)</h3>
 
