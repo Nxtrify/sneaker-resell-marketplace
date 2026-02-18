@@ -9,7 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $condition = $_POST["condition"];
     $image_url = $_POST["image_url"];
 
-    $stmt = $pdo->prepare("INSERT INTO sneakers (user_id, brand, size, condition, image_url, status) VALUES (?, ?, ?, ?, ?, 'active')");
+    $stmt = $pdo->prepare("INSERT INTO sneakers (user_id, brand, size, `condition`, image_url, status) 
+                       VALUES (?, ?, ?, ?, ?, 'active')");
+
     $stmt->execute([$_SESSION["user_id"], $brand, $size, $condition, $image_url]);
 
     header("Location: dashboard.php");
