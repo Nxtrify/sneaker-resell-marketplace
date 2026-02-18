@@ -19,8 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <link rel="stylesheet" href="../Assets/style.css">
 
-<h2>Voeg Sneaker Toe</h2>
-
 <div class="navbar">
     <div class="nav-left">
         <a href="dashboard.php">Dashboard</a>
