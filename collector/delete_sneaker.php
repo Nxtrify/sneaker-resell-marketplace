@@ -13,3 +13,18 @@ if (!$id) {
 $stmt = $pdo->prepare("SELECT * FROM sneakers WHERE id = ? AND user_id = ?");
 $stmt->execute([$id, $_SESSION['user_id']]);
 $sneaker = $stmt->fetch();
+
+if (!$sneaker) {
+    die("Sneaker niet gevonden of niet van jou.");
+}
+
+// Alleen verwijderen als status active is
+if ($sneaker['status'] !== 'active') {
+    die("Sneaker kan niet verwijderd worden.");
+}
+
+// Verwijder sneaker
+$pdo->prepare("DELETE FROM sneakers WHERE id = ?")->execute([$id]);
+
+header("Location: dashboard.php");
+exit();
