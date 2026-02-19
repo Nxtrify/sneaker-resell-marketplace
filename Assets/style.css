@@ -381,6 +381,10 @@ body {
 }
 
 .login-logo {
-    width: 400px;
-    margin-bottom: 20px;
+    width: 400px !important;
+    max-width: none !important;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
 }
+

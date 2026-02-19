@@ -41,8 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <img src="../assets/logo.png" alt="SneakerResell Logo" class="login-logo">
 </div>
 
-    <div class="auth-title">SneakerResell</div>
-    <div class="auth-subtitle">Premium Sneaker Marketplace</div>
 
     <div class="auth-card">
         <h2>Login</h2>
