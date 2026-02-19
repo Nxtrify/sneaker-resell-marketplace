@@ -58,8 +58,11 @@ $sneakers = $stmt->fetchAll();
             <?php foreach($sneakers as $s): ?>
                 <tr>
                     <td>
-                        <img src="<?php echo htmlspecialchars($s['image_url']); ?>" 
-                             class="admin-thumb">
+                        <a href="<?php echo htmlspecialchars($s['image_url']); ?>" target="_blank">
+    <img src="<?php echo htmlspecialchars($s['image_url']); ?>" 
+         class="admin-thumb">
+</a>
+
                     </td>
                     <td><?php echo $s['id']; ?></td>
                     <td><?php echo htmlspecialchars($s['brand']); ?></td>
