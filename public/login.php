@@ -31,8 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<?php require_once "../includes/header.php"; ?>
-
 <div class="main-content">
 
     <link rel="stylesheet" href="../assets/style.css">
