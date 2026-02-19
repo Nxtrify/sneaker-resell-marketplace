@@ -47,8 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="auth-wrapper">
 
-    <h1 class="logo-title">SneakerResell</h1>
-    <p class="logo-sub">Premium Sneaker Marketplace</p>
+    <link rel="stylesheet" href="../assets/style.css">
+
+<div class="auth-container">
+
+    <div class="logo">
+        <img src="../assets/logo.png" alt="SneakerResell Logo" class="login-logo">
+    </div>
 
     <div class="auth-card">
         <h2>Registreren</h2>
