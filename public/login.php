@@ -36,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <div class="auth-container">
 
+
+<div class="logo">
+    <img src="../assets/logo.png" alt="SneakerResell Logo" class="login-logo">
+</div>
+
     <div class="auth-title">SneakerResell</div>
     <div class="auth-subtitle">Premium Sneaker Marketplace</div>
 
