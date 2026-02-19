@@ -18,12 +18,12 @@ if (!$sneaker) {
     die("Sneaker niet gevonden of niet van jou.");
 }
 
-// Alleen verwijderen als status active is
+
 if ($sneaker['status'] !== 'active') {
     die("Sneaker kan niet verwijderd worden.");
 }
 
-// Verwijder sneaker
+
 $pdo->prepare("DELETE FROM sneakers WHERE id = ?")->execute([$id]);
 
 header("Location: dashboard.php");
