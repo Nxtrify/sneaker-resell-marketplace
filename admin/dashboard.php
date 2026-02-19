@@ -13,7 +13,7 @@ $stmt = $pdo->query("
 $sneakers = $stmt->fetchAll();
 ?>
 
-<link rel="stylesheet" href="../Assets/style.css">
+<link rel="stylesheet" href="../assets/style.css">
 
 <div class="navbar">
     <div class="nav-left">
