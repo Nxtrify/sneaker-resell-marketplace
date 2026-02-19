@@ -1,15 +1,18 @@
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
-requireLogin();
-requireAdmin();
 
+requireLogin();   // Zorgt dat alleen ingelogde gebruikers toegang hebben
+requireAdmin();   // Zorgt dat alleen admins toegang hebben
+
+// Haalt alle sneakers op die nog geverifieerd moeten worden
 $stmt = $pdo->query("
     SELECT s.*, u.email as seller_email 
     FROM sneakers s 
     JOIN users u ON s.user_id = u.id 
     WHERE s.status = 'verification'
 ");
+
 $sneakers = $stmt->fetchAll();
 ?>
 
@@ -21,7 +24,7 @@ $sneakers = $stmt->fetchAll();
     </div>
 
     <div class="nav-right">
-        <span><?php echo $_SESSION['email']; ?></span>
+        <span><?php echo $_SESSION['email']; ?></span> <!-- Toon ingelogde admin -->
         <a href="../public/logout.php" style="color:white;">Uitloggen</a>
     </div>
 </div>
@@ -55,20 +58,24 @@ $sneakers = $stmt->fetchAll();
                 </tr>
             </thead>
             <tbody>
+
             <?php foreach($sneakers as $s): ?>
                 <tr>
                     <td>
+                        
                         <a href="<?php echo htmlspecialchars($s['image_url']); ?>" target="_blank">
-    <img src="<?php echo htmlspecialchars($s['image_url']); ?>" 
-         class="admin-thumb">
-</a>
-
+                            <img src="<?php echo htmlspecialchars($s['image_url']); ?>" 
+                                 class="admin-thumb"
+                                 alt="Sneaker image">
+                        </a>
                     </td>
+
                     <td><?php echo $s['id']; ?></td>
-                    <td><?php echo htmlspecialchars($s['brand']); ?></td>
+                    <td><?php echo htmlspecialchars($s['brand']); ?></td> 
                     <td><?php echo $s['size']; ?></td>
-                    <td><?php echo htmlspecialchars($s['condition']); ?></td>
-                    <td><?php echo htmlspecialchars($s['seller_email']); ?></td>
+                    <td><?php echo htmlspecialchars($s['condition']); ?></td> 
+                    <td><?php echo htmlspecialchars($s['seller_email']); ?></td> 
+
                     <td>
                         <a href="verify_sneaker.php?id=<?php echo $s['id']; ?>&decision=approved">
                             <button class="btn-success">Goedkeuren</button>
@@ -80,6 +87,7 @@ $sneakers = $stmt->fetchAll();
                     </td>
                 </tr>
             <?php endforeach; ?>
+
             </tbody>
         </table>
     </div>
