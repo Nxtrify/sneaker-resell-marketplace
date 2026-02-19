@@ -18,6 +18,7 @@ $sneakers = $stmt->fetchAll();
     <div class="nav-left">
         <a href="../collector/dashboard.php">Dashboard</a>
         <a href="marketplace.php">Marktplaats</a>
+        <a href="add_sneaker.php">Sneaker toevoegen</a>
     </div>
 
     <div class="nav-right">
