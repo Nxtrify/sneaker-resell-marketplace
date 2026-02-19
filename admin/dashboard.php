@@ -45,6 +45,7 @@ $sneakers = $stmt->fetchAll();
         <table class="admin-table">
             <thead>
                 <tr>
+                    <th>Foto</th>
                     <th>ID</th>
                     <th>Merk</th>
                     <th>Maat</th>
@@ -56,11 +57,15 @@ $sneakers = $stmt->fetchAll();
             <tbody>
             <?php foreach($sneakers as $s): ?>
                 <tr>
+                    <td>
+                        <img src="<?php echo htmlspecialchars($s['image_url']); ?>" 
+                             class="admin-thumb">
+                    </td>
                     <td><?php echo $s['id']; ?></td>
-                    <td><?php echo $s['brand']; ?></td>
+                    <td><?php echo htmlspecialchars($s['brand']); ?></td>
                     <td><?php echo $s['size']; ?></td>
-                    <td><?php echo $s['condition']; ?></td>
-                    <td><?php echo $s['seller_email']; ?></td>
+                    <td><?php echo htmlspecialchars($s['condition']); ?></td>
+                    <td><?php echo htmlspecialchars($s['seller_email']); ?></td>
                     <td>
                         <a href="verify_sneaker.php?id=<?php echo $s['id']; ?>&decision=approved">
                             <button class="btn-success">Goedkeuren</button>
