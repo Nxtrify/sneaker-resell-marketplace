@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<link rel="stylesheet" href="../Assets/style.css">
+<link rel="stylesheet" href="../assets/style.css">
 
 <div class="auth-container">
 
