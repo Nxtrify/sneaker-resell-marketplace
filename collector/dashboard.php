@@ -10,7 +10,7 @@ requireLogin();
     <div class="nav-left">
         <a href="dashboard.php">Dashboard</a>
         <a href="../public/marketplace.php">Marktplaats</a>
-        <a href="add_sneaker.php">Sneaker toevoegen</a>
+        <a href="/SneakerProject/collector/add_sneaker.php">Sneaker toevoegen</a>
     </div>
 
     <div class="nav-right">
