@@ -3,21 +3,28 @@ require_once "../config/database.php";
 require_once "../includes/auth.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    // Zoek gebruiker op basis van e-mail
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
+    // Verifieer wachtwoord met veilige hash controle
     if ($user && password_verify($password, $user["password"])) {
+
         if ($user["blocked"] == 1) {
             $error = "Account is geblokkeerd.";
         } else {
+
+            // Sla gebruikersgegevens op in sessie
             $_SESSION["user_id"] = $user["id"];
             $_SESSION["role"] = $user["role"];
             $_SESSION["email"] = $user["email"];
 
+            // Redirect op basis van rol
             if ($user["role"] === "admin") {
                 header("Location: ../admin/dashboard.php");
             } else {
@@ -25,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
             exit();
         }
+
     } else {
         $error = "Onjuiste gegevens.";
     }
@@ -61,4 +69,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </div>
 
-<?php require_once "../includes/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?> 

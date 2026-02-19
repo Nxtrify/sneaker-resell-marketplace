@@ -1,8 +1,9 @@
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
-requireLogin();
+requireLogin(); 
 
+// Haal alle actieve sneakers op inclusief hoogste bod
 $stmt = $pdo->query("
     SELECT s.*, 
     (SELECT MAX(amount) FROM bids WHERE sneaker_id = s.id) AS highest_bid
@@ -22,7 +23,7 @@ $sneakers = $stmt->fetchAll();
     </div>
 
     <div class="nav-right">
-        <span><?php echo $_SESSION['email']; ?></span>
+        <span><?php echo $_SESSION['email']; ?></span> 
         <a href="logout.php" style="color:white;">Uitloggen</a>
     </div>
 </div>
@@ -39,12 +40,13 @@ if(empty($sneakers)){
     echo "<p>Geen sneakers beschikbaar.</p>";
 } else {
 
-    echo "<div class='grid'>";
+    echo "<div class='grid'>"; // Grid layout voor sneakers
 
     foreach($sneakers as $s){
 
         echo "<div class='card'>";
 
+        // Link naar detailpagina met sneaker ID
         echo "<a href='sneaker_detail.php?id={$s['id']}' style='text-decoration:none; color:black;'>";
 
         echo "<img src='{$s['image_url']}' 
@@ -54,6 +56,7 @@ if(empty($sneakers)){
         echo "Maat: {$s['size']}<br>";
         echo "Conditie: {$s['condition']}<br><br>";
 
+        // Toon hoogste bod indien aanwezig
         if($s['highest_bid']){
             echo "<strong>Hoogste bod:</strong> €{$s['highest_bid']}";
         } else {

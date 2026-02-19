@@ -1,7 +1,7 @@
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
-requireLogin();
+requireLogin(); 
 
 $id = $_GET['id'] ?? null;
 
@@ -9,6 +9,7 @@ if (!$id) {
     $error_message = "Sneaker ID ontbreekt.";
 } else {
 
+    // Haal sneaker op inclusief hoogste bod
     $stmt = $pdo->prepare("
         SELECT s.*, 
         (SELECT MAX(amount) FROM bids WHERE sneaker_id = s.id) as highest_bid 
@@ -22,19 +23,17 @@ if (!$id) {
         $error_message = "Sneaker niet gevonden.";
     } 
     elseif ($sneaker['user_id'] == $_SESSION['user_id']) {
-        $error_message = "Je kan niet bieden op je eigen sneaker.";
+        $error_message = "Je kan niet bieden op je eigen sneaker."; // Ownership check
     } 
     elseif ($sneaker['status'] !== 'active') {
-        $error_message = "Je kan niet bieden op deze sneaker.";
+        $error_message = "Je kan niet bieden op deze sneaker."; // Alleen actieve sneakers
     }
 }
 
 $error = "";
 $success = "";
 
-/* 
-   ERROR PAGE 
- */
+
 if (isset($error_message)) {
 ?>
 <link rel="stylesheet" href="../Assets/style.css">
@@ -65,21 +64,18 @@ if (isset($error_message)) {
 </div>
 
 <?php
-exit();
+exit(); // Stop verdere uitvoering bij fout
 }
-/* 
-   EINDE ERROR PAGE
- */
 
 
-/* 
-   BIEDING VERWERKEN
- */
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $amount = floatval($_POST['amount']);
     $highest = $sneaker['highest_bid'] ?? 0;
 
+    // Controleer of bod hoger is dan huidig hoogste bod
     if ($amount <= $highest) {
         $error = "Bod moet hoger zijn dan huidige hoogste bod (€$highest).";
     } else {
@@ -87,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$sneaker['id'], $_SESSION['user_id'], $amount]);
 
         $success = "Bod geplaatst!";
-        $sneaker['highest_bid'] = $amount;
+        $sneaker['highest_bid'] = $amount; // Update voor directe weergave
     }
 }
 ?>
@@ -101,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <div class="nav-right">
-        <span><?php echo $_SESSION['email']; ?></span>
+        <span><?php echo $_SESSION['email']; ?></span> 
         <a href="logout.php" style="color:white;">Uitloggen</a>
     </div>
 </div>

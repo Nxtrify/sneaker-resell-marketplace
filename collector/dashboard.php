@@ -1,7 +1,8 @@
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
-requireLogin();
+
+requireLogin(); 
 ?>
 
 <link rel="stylesheet" href="../Assets/style.css">
@@ -14,7 +15,7 @@ requireLogin();
     </div>
 
     <div class="nav-right">
-        <span><?php echo $_SESSION['email']; ?></span>
+        <span><?php echo $_SESSION['email']; ?></span> <!-- Toon ingelogde gebruiker -->
         <a href="../public/logout.php" style="color:white;">Uitloggen</a>
     </div>
 </div>
@@ -29,6 +30,7 @@ requireLogin();
     <h3>Mijn Sneakers</h3>
 
 <?php
+// Haal alle sneakers van de ingelogde gebruiker op
 $stmt = $pdo->prepare("SELECT * FROM sneakers WHERE user_id = ?");
 $stmt->execute([$_SESSION['user_id']]);
 $sneakers = $stmt->fetchAll();
@@ -55,7 +57,7 @@ if(empty($sneakers)){
                   {$s['status']}
               </span><br><br>";
 
-        // Hoogste bod ophalen
+        // Haal hoogste bod op voor deze sneaker
         $stmt2 = $pdo->prepare("SELECT * FROM bids WHERE sneaker_id=? ORDER BY amount DESC LIMIT 1");
         $stmt2->execute([$s['id']]);
         $highest_bid = $stmt2->fetch();
@@ -63,6 +65,7 @@ if(empty($sneakers)){
         if($highest_bid){
             echo "<strong>Hoogste bod:</strong> €" . $highest_bid['amount'] . "<br><br>";
 
+            // Alleen mogelijk om bod te accepteren als sneaker actief is
             if($s['status'] == 'active'){
                 echo "<form method='POST' action='accept_bid.php'>
                         <input type='hidden' name='sneaker_id' value='{$s['id']}'>
@@ -75,7 +78,7 @@ if(empty($sneakers)){
             echo "Nog geen bod.<br><br>";
         }
 
-        // DELETE knop
+        // Alleen actieve sneakers mogen verwijderd worden
         if($s['status'] == 'active'){
             echo "<form method='POST' action='delete_sneaker.php'
                     onsubmit=\"return confirm('Weet je zeker dat je deze sneaker wil verwijderen?');\">

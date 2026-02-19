@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST["password"];
     $confirm = $_POST["confirm_password"];
 
-    
+    // Basis validatie van invoer
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Ongeldig e-mailadres.";
     } elseif (strlen($password) < 6) {
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "Wachtwoorden komen niet overeen.";
     } else {
 
-        // Check of email al bestaat
+        // Controleer of e-mail al bestaat
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
 
@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $error = "Dit e-mailadres is al geregistreerd.";
         } else {
 
+            // Hash wachtwoord veilig met BCRYPT
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             $stmt = $pdo->prepare("
@@ -46,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <link rel="stylesheet" href="../assets/style.css">
 
 <div class="auth-wrapper">
-
-    <link rel="stylesheet" href="../assets/style.css">
 
 <div class="auth-container">
 

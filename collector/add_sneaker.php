@@ -1,20 +1,29 @@
 <?php
 require_once "../config/database.php";
 require_once "../includes/auth.php";
-requireLogin();
+
+requireLogin(); // Alleen ingelogde gebruikers mogen sneakers toevoegen
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     $brand = $_POST["brand"];
     $size = $_POST["size"];
     $condition = $_POST["condition"];
     $image_url = $_POST["image_url"];
 
+    // Voeg sneaker toe met status 'active'
     $stmt = $pdo->prepare("INSERT INTO sneakers (user_id, brand, size, `condition`, image_url, status) 
-                       VALUES (?, ?, ?, ?, ?, 'active')");
+                           VALUES (?, ?, ?, ?, ?, 'active')");
 
-    $stmt->execute([$_SESSION["user_id"], $brand, $size, $condition, $image_url]);
+    $stmt->execute([
+        $_SESSION["user_id"], 
+        $brand, 
+        $size, 
+        $condition, 
+        $image_url
+    ]);
 
-    header("Location: dashboard.php");
+    header("Location: dashboard.php"); // Redirect na succesvolle toevoeging
     exit();
 }
 ?>
@@ -29,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 
     <div class="nav-right">
-        <span><?php echo $_SESSION['email']; ?></span>
+        <span><?php echo $_SESSION['email']; ?></span> <!-- Toon ingelogde gebruiker -->
         <a href="../public/logout.php" style="color:white;">Uitloggen</a>
     </div>
 </div>
